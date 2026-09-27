@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+"""Run a command with AF_UNIX socket creation blocked.
+
+Usage: block-unix-sockets COMMAND [ARGS...]
+
+Stands in for comparator's recommended
+`systemd-run --property=RestrictAddressFamilies=~AF_UNIX`.
+"""
+
+import errno
+import os
+import socket
+import sys
+
+import seccomp
+
+if len(sys.argv) < 2:
+    sys.exit(__doc__.strip().splitlines()[2])
+
+f = seccomp.SyscallFilter(defaction=seccomp.ALLOW)
+for call in ("socket", "socketpair"):
+    f.add_rule(
+        seccomp.ERRNO(errno.EAFNOSUPPORT),
+        call,
+        seccomp.Arg(0, seccomp.EQ, socket.AF_UNIX),
+    )
+f.load()
+os.execvp(sys.argv[1], sys.argv[1:])

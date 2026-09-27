@@ -1,0 +1,7 @@
+name = "smoke"
+
+[[lean_lib]]
+name = "Challenge"
+
+[[lean_lib]]
+name = "Solution"
