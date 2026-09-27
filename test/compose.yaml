@@ -1,0 +1,10 @@
+services:
+  # Checks that comparator accepts the real proof in test/fixture/.
+  test:
+    image: ${image_name}
+    network_mode: none
+    # Mount test/fixture/ read-only at /src, so the test never writes into the host repo.
+    volumes:
+      - ./fixture:/src:ro
+    # Copy it to ~/project, because comparator writes `.lake/` and /src is read-only.
+    command: bash -c 'cp -r /src ~/project && cd ~/project && block-unix-sockets lake env comparator config.json'
