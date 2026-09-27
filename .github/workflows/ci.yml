@@ -10,5 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - uses: docker/setup-buildx-action@v4
       - uses: extractions/setup-just@v4
-      - run: just test
+
+      - uses: docker/build-push-action@v7
+        with:
+          context: .
+          load: true
+          tags: lean-comparator-docker
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - run: just test-ci
