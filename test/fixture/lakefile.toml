@@ -1,4 +1,4 @@
-name = "smoke"
+name = "fixture"
 
 [[lean_lib]]
 name = "Challenge"
