@@ -39,8 +39,8 @@ jobs:
 
       - run: just test-ci
 
-      # Push this arch's tested image under a per-arch tag. The `publish` job
-      # then stitches every arch's tag into one multi-arch tag.
+      # Push this arch's tested image under a per-arch tag. The `tag-multi-arch`
+      # job then stitches every arch's tag into one multi-arch tag.
       - if: inputs.should_publish
         uses: docker/login-action@v4
         with:
@@ -54,7 +54,7 @@ jobs:
           docker tag lean-comparator-docker "$tag"
           docker push "$tag"
 
-  publish:
+  tag-multi-arch:
     if: inputs.should_publish
     needs: build-and-test
     runs-on: ubuntu-latest
