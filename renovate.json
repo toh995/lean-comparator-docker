@@ -1,0 +1,34 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "customManagers:dockerfileVersions"
+  ],
+  "semanticCommits": "enabled",
+  "nix": {
+    "enabled": true
+  },
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "description": "Lean, lean4export, and comparator must move together",
+      "matchDepNames": [
+        "leanprover/lean4",
+        "leanprover/lean4export",
+        "leanprover/comparator"
+      ],
+      "groupName": "lean"
+    },
+    {
+      "description": "Look up apt packages in Debian trixie",
+      "matchDatasources": [
+        "deb"
+      ],
+      "registryUrls": [
+        "https://deb.debian.org/debian?suite=trixie&components=main&binaryArch=amd64"
+      ]
+    }
+  ]
+}
