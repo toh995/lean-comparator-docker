@@ -8,5 +8,3 @@ jobs:
     uses: ./.github/workflows/build-and-test.yaml
     with:
       should_publish: false
-    permissions:
-      contents: read

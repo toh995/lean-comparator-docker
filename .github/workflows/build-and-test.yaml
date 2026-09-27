@@ -58,8 +58,6 @@ jobs:
     if: inputs.should_publish
     needs: build-and-test
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
     steps:
       - uses: docker/login-action@v4
         with:
