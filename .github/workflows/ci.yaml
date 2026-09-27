@@ -1,0 +1,12 @@
+name: CI
+
+on:
+  pull_request:
+
+jobs:
+  build-and-test:
+    uses: ./.github/workflows/build-and-test.yaml
+    with:
+      should_publish: false
+    permissions:
+      contents: read

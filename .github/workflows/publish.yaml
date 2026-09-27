@@ -1,0 +1,14 @@
+name: Publish
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    uses: ./.github/workflows/build-and-test.yaml
+    with:
+      should_publish: true
+    permissions:
+      contents: read
+      packages: write
