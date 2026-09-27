@@ -1,5 +1,11 @@
 export image_name := "lean-comparator-docker"
 
+lint:
+    hadolint Dockerfile
+
+format-check:
+    dockerfmt --check -n Dockerfile
+
 # Build the image, then test it
 test-local: && test-ci
     docker build -t {{image_name}} .
