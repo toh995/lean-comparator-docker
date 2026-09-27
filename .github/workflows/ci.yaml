@@ -4,7 +4,7 @@ on:
   pull_request:
 
 jobs:
-  build-and-test:
+  ci:
     uses: ./.github/workflows/build-and-test.yaml
     with:
       should_publish: false

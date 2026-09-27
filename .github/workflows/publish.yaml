@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 jobs:
-  build-and-test:
+  publish:
     uses: ./.github/workflows/build-and-test.yaml
     with:
       should_publish: true
