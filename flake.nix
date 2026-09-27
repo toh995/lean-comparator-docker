@@ -14,6 +14,7 @@
           packages = with pkgs; [
             docker-language-server
             dockerfmt
+            just
             hadolint
           ];
         };
