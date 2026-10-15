@@ -17,7 +17,7 @@ RUN apt-get update \
 
 # Install Elan + Lean
 # renovate: datasource=github-tags depName=leanprover/lean4
-ARG LEAN_VERSION=v4.34.1
+ARG LEAN_VERSION=v4.35.0
 ARG LEAN_TOOLCHAIN=leanprover/lean4:$LEAN_VERSION
 ENV ELAN_HOME=/opt/elan
 ENV PATH="$ELAN_HOME/bin:$PATH"
@@ -27,14 +27,14 @@ RUN curl https://elan.lean-lang.org/elan-init.sh -sSf \
 
 # Compile lean4export
 # renovate: datasource=github-tags depName=leanprover/lean4export
-ARG LEAN4EXPORT_VERSION=v4.34.0
+ARG LEAN4EXPORT_VERSION=v4.35.0
 RUN git clone --depth 1 --branch "$LEAN4EXPORT_VERSION" \
     https://github.com/leanprover/lean4export /tmp/lean4export \
     && lake "+$LEAN_TOOLCHAIN" -d /tmp/lean4export build lean4export
 
 # Compile comparator
 # renovate: datasource=github-tags depName=leanprover/comparator
-ARG COMPARATOR_VERSION=v4.34.0
+ARG COMPARATOR_VERSION=v4.35.0
 RUN git clone --depth 1 --branch "$COMPARATOR_VERSION" \
     https://github.com/leanprover/comparator /tmp/comparator \
     && lake "+$LEAN_TOOLCHAIN" -d /tmp/comparator build comparator
